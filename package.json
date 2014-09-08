@@ -1,0 +1,11 @@
+{
+  "name": "fxos-connect",
+  "version": "0.1.0",
+  "description": "Connect to a simulator (start one if none is open)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nicola Greco <me@nicola.io> (http://nicolagreco.com/)",
+  "license": "ISC"
+}
