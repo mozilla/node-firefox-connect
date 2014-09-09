@@ -7,5 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Nicola Greco <me@nicola.io> (http://nicolagreco.com/)",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "fx-ports": "^0.1.1",
+    "fxos-start": "^0.1.1",
+    "q": "^1.0.1",
+    "underscore": "^1.7.0"
+  }
 }
