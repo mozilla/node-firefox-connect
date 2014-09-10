@@ -13,5 +13,8 @@
     "fxos-start": "^0.1.1",
     "q": "^1.0.1",
     "underscore": "^1.7.0"
+  },
+  "devDependencies": {
+    "should": "^4.0.4"
   }
 }

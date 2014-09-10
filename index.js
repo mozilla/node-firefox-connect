@@ -6,7 +6,6 @@ var __ = require('underscore');
 module.exports = Connect;
 
 function discoverPortPromise (opts) {
-  console.log(opts)
   var deferred = Q.defer();
   discoverPorts(opts, deferred.makeNodeResolver());
   return deferred.promise;
@@ -31,9 +30,13 @@ function Connect() {
 
   // Connect({port: 3200})
   // Connect({release: 2.1})
-  var portReady = discoverPortPromise({b2g:true, release:opts.release})
+  var portReady = discoverPortPromise({
+      b2g:true,
+      release:opts.release,
+      detailed: true
+    })
     .then(function(b2gs) {
-      console.log(b2gs)
+      
       var canReuseSim = false;
 
       if (b2gs.length) {
@@ -64,7 +67,7 @@ function Connect() {
       if (canReuseSim) {
         return canReuseSim;
       }
-
+      opts.connect = false;
       return start(opts)
         .then(function(simulator) {
           return simulator;
