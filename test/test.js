@@ -102,5 +102,28 @@ describe('fxos-connect', function(){
         .fail(done);
     });
 
+    it('should start new sim if port not matching', function(done) {
+      this.timeout(4000)
+      var starting = Start({
+        connect:false,
+        force: true,
+        port: 8081
+      }).fail(done);
+      var connecting = starting.then(function(sim) {
+        return Connect({force:true, port:8082});
+      }).fail(done);
+
+      Q.all([connecting, starting])
+        .spread(function(sim1, sim2) {
+          sim1.pid.should.not.equal(sim2.pid);
+          sim1.port.should.equal(8082);
+          process.kill(sim1.pid);
+          
+        })
+        .then(done)
+        .fail(done);
+    });
+
+
   });
 });
