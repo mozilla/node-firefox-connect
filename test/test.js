@@ -2,18 +2,25 @@ var assert = require("assert");
 var should = require("should");
 var Connect = require("../");
 var Start = require("fxos-start");
+var Ports = require("fx-ports");
 var Q = require('q');
 
 
 describe('fxos-connect', function(){
   this.timeout(10000);
+  afterEach(function() {
+    Ports({b2g:true}, function(err, instances) {
+      instances.forEach(function(i) {
+        process.kill(i.pid);
+      });
+    });
+  })
 
   describe('when no simulator is open', function(){
 
     it('should start a simulator', function(done) {
       Connect()
         .then(function(sim) {
-          process.kill(sim.pid);
           sim.pid.should.be.type('number');
           sim.port.should.be.type('number');
           sim.release.should.be.type('string');
@@ -25,7 +32,6 @@ describe('fxos-connect', function(){
     it('should match given release', function(done) {
       Connect({release:['2.1']})
         .then(function(sim) {
-          process.kill(sim.pid);
           sim.release.should.equal('2.1');
         })
         .then(done)
@@ -35,7 +41,6 @@ describe('fxos-connect', function(){
     it('should match given port', function(done) {
       Connect({port:8081})
         .then(function(sim) {
-          process.kill(sim.pid);
           sim.port.should.equal(8081);
         })
         .then(done)
@@ -56,7 +61,6 @@ describe('fxos-connect', function(){
 
       Q.all([connecting, starting])
         .spread(function(sim1, sim2) {
-          process.kill(sim1.pid);
           sim1.pid.should.equal(sim2.pid);
         })
         .then(done)
@@ -75,7 +79,6 @@ describe('fxos-connect', function(){
 
       Q.all([connecting, starting])
         .spread(function(sim1, sim2) {
-          process.kill(sim1.pid);
           var regex = new RegExp("^(" + sim2.release + ")");
           assert(regex.exec(sim1.release));
         })
@@ -96,7 +99,6 @@ describe('fxos-connect', function(){
 
       Q.all([connecting, starting])
         .spread(function(sim1, sim2) {
-          process.kill(sim1.pid);
           sim1.port.should.equal(sim2.port);
         })
         .then(done)
@@ -117,8 +119,6 @@ describe('fxos-connect', function(){
         .spread(function(sim1, sim2) {
           sim1.pid.should.not.equal(sim2.pid);
           sim1.port.should.equal(8082);
-          process.kill(sim1.pid);
-          
         })
         .then(done)
         .fail(done);
@@ -129,7 +129,6 @@ describe('fxos-connect', function(){
     it('should return a simulator obj with client instance', function(done) {
       Connect({connect: true})
         .then(function(sim) {
-          process.kill(sim.pid);
           should.exist(sim.client);
         })
         .then(done)
