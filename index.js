@@ -2,6 +2,7 @@ var discoverPorts = require('fx-ports');
 var start = require('fxos-start');
 var Q = require('q');
 var __ = require('underscore');
+var FirefoxClient = require('firefox-client');
 
 module.exports = Connect;
 
@@ -67,12 +68,26 @@ function Connect() {
       if (canReuseSim) {
         return canReuseSim;
       }
-      opts.connect = false;
-      return start(opts)
+
+      return start(__.extend(opts, {connect:false}))
         .then(function(simulator) {
           return simulator;
         });
     });
 
-    return portReady;
+    if (opts.connect) {
+      return portReady
+        .then(function(simulator) {
+          var deferred = Q.defer();
+          simulator.client = new FirefoxClient();
+          simulator.client.connect(simulator.port, function(err) {
+            if (err) deferred.reject(err);
+            deferred.resolve(simulator);
+          });
+          return deferred.promise;
+        });
+
+    } else {
+      return portReady;
+    }
 }

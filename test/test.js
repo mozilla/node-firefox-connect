@@ -123,7 +123,17 @@ describe('fxos-connect', function(){
         .then(done)
         .fail(done);
     });
+  });
 
-
+  describe('opt.connect', function(){
+    it('should return a simulator obj with client instance', function(done) {
+      Connect({connect: true})
+        .then(function(sim) {
+          process.kill(sim.pid);
+          should.exist(sim.client);
+        })
+        .then(done)
+        .fail(done);
+    });
   });
 });
