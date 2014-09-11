@@ -6,6 +6,7 @@ var Q = require('q');
 
 
 describe('fxos-connect', function(){
+  this.timeout(10000);
 
   describe('when no simulator is open', function(){
 
@@ -103,7 +104,6 @@ describe('fxos-connect', function(){
     });
 
     it('should start new sim if port not matching', function(done) {
-      this.timeout(4000)
       var starting = Start({
         connect:false,
         force: true,
