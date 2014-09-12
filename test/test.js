@@ -125,7 +125,7 @@ describe('fxos-connect', function(){
     });
   });
 
-  describe('opt.connect', function(){
+  describe('opts.connect', function(){
     it('should return a simulator obj with client instance', function(done) {
       Connect({connect: true})
         .then(function(sim) {
@@ -134,5 +134,26 @@ describe('fxos-connect', function(){
         .then(done)
         .fail(done);
     });
+  });
+
+  describe('opts.client', function(){
+    it('should return a simulator obj with client instance', function(done) {
+      var starting = Start({
+          connect: true,
+          force: true,
+          port: 8081
+        })
+        .then(function(simStart) {
+          return Connect(simStart)
+            .then(function(simConnect) {
+              simConnect.client.should.be.ok;
+              simStart.pid.should.equal(simConnect.pid)
+            })
+        })
+        .then(done)
+        .fail(done)
+
+    });
+
   });
 });

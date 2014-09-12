@@ -31,13 +31,28 @@ function Connect() {
 
   // Connect({port: 3200})
   // Connect({release: 2.1})
+
+  var needsStart = false;
+  if (opts.stderr || opts.stdin ||
+      opts.stdout || opts.verbose ||
+      opts.bin || opts.profile) {
+    needsStart = false;
+    opts.force = true;
+  }
+
+  // If it is passing the client, then noop!
+  if (opts.client && !needsStart) {
+    return Q(opts);
+  }
+
   var portReady = discoverPortPromise({
-      b2g:true,
-      release:opts.release,
-      detailed: true
-    })
-    .then(function(b2gs) {
-      
+    b2g:true,
+    release:opts.release,
+    detailed: true
+  });
+
+  var canReusePort = portReady
+    .then(function(b2gs) {  
       var canReuseSim = false;
 
       if (b2gs.length) {
@@ -56,16 +71,13 @@ function Connect() {
           canReuseSim = b2gs[0];
         }
       }
+      return canReuseSim;
+    });
+
+  var simulatorReady = canReusePort.then(function(canReuseSim) {
 
       // if something requires owning the process
-      if (opts.stderr || opts.stdin ||
-          opts.stdout || opts.verbose ||
-          opts.bin || opts.profile) {
-        canReuseSim = false;
-        opts.force = true;
-      }
-
-      if (canReuseSim) {
+      if (canReuseSim && !needsStart) {
         return canReuseSim;
       }
 
@@ -76,7 +88,7 @@ function Connect() {
     });
 
     if (opts.connect) {
-      return portReady
+      return simulatorReady
         .then(function(simulator) {
           var deferred = Q.defer();
           simulator.client = new FirefoxClient();
@@ -87,7 +99,7 @@ function Connect() {
           return deferred.promise;
         });
 
-    } else {
-      return portReady;
     }
+
+  return simulatorReady;
 }
