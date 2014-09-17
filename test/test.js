@@ -129,10 +129,21 @@ describe('fxos-connect', function(){
     it('should return a simulator obj with client instance', function(done) {
       Connect({connect: true})
         .then(function(sim) {
+          sim.client.disconnect()
           should.exist(sim.client);
         })
         .then(done)
         .fail(done);
+    });
+  });
+
+  describe('callback', function(){
+    it('should return a simulator obj with client instance', function(done) {
+      Connect(function(err, sim) {
+        sim.client.disconnect()
+        should.exist(sim.client);
+        done();
+      })
     });
   });
 

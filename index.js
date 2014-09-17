@@ -6,14 +6,8 @@ var FirefoxClient = require('firefox-client');
 
 module.exports = Connect;
 
-function FXPortsPromise (opts) {
-  var deferred = Q.defer();
-  FXPorts(opts, deferred.makeNodeResolver());
-  return deferred.promise;
-}
-
 function findSimulator(opts) {
-  return FXPortsPromise({
+  return Q.nfcall(FXPorts, {
       b2g: true,
       release: opts.release,
       detailed: true
@@ -52,8 +46,10 @@ function Connect (opts, callback) {
 
   if (typeof opts == 'function') {
     callback = opts;
+    opts = {connect: true};
+  } else {
+    opts = opts ? __.clone(opts) : {};
   }
-  opts = opts ? __.clone(opts) : {};
 
   // restart determines if there is a need to restart a simulator
   // which is when we want to use a specific simulator bin/profile
