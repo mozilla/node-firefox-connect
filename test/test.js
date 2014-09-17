@@ -14,7 +14,7 @@ describe('fxos-connect', function(){
         process.kill(i.pid);
       });
     });
-  })
+  });
 
   describe('when no simulator is open', function(){
 
@@ -129,7 +129,7 @@ describe('fxos-connect', function(){
     it('should return a simulator obj with client instance', function(done) {
       Connect({connect: true})
         .then(function(sim) {
-          sim.client.disconnect()
+          sim.client.disconnect();
           should.exist(sim.client);
         })
         .then(done)
@@ -140,10 +140,17 @@ describe('fxos-connect', function(){
   describe('callback', function(){
     it('should return a simulator obj with client instance', function(done) {
       Connect(function(err, sim) {
-        sim.client.disconnect()
+        sim.client.disconnect();
         should.exist(sim.client);
         done();
-      })
+      });
+    });
+
+    it('should return a simulator obj', function(done) {
+      Connect({port:8081}, function(err, sim) {
+        sim.port.should.equal(8081);
+        done();
+      });
     });
   });
 
