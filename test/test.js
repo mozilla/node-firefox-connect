@@ -136,24 +136,4 @@ describe('fxos-connect', function(){
     });
   });
 
-  describe('opts.client', function(){
-    it('should return a simulator obj with client instance', function(done) {
-      var starting = Start({
-          connect: true,
-          force: true,
-          port: 8081
-        })
-        .then(function(simStart) {
-          return Connect(simStart)
-            .then(function(simConnect) {
-              simConnect.client.should.be.ok;
-              simStart.pid.should.equal(simConnect.pid)
-            })
-        })
-        .then(done)
-        .fail(done)
-
-    });
-
-  });
 });
