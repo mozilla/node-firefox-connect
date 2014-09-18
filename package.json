@@ -1,6 +1,6 @@
 {
   "name": "fxos-connect",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Connect to a simulator (start one if none is open)",
   "main": "index.js",
   "scripts": {
@@ -10,8 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "firefox-client": "^0.3.0",
-    "fx-ports": "^0.2.0",
-    "fxos-start": "^0.2.0",
+    "fx-ports": "^0.3.0",
+    "fxos-start": "^0.3.0",
     "q": "^1.0.1",
     "underscore": "^1.7.0"
   },
