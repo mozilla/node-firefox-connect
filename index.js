@@ -71,14 +71,5 @@ function Connect (opts, callback) {
     .then(function (sim) {
       return opts.connect ? createClient(sim) : sim;
     })
-    .then(
-      function(sim) {
-        if (callback) callback(null, sim);
-        return sim;
-      },
-      function(err) {
-        if (callback) callback(err);
-        return err;
-      }
-    );
+    .nodeify(callback);
 }
