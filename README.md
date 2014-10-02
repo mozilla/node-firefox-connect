@@ -17,9 +17,9 @@ Connects to an existing simulator Start a FirefoxOS simulator and connect to it 
 
 ```javascript
 var connect = require('fxos-connect');
-connect({port:1234}, function(err, client) {
+connect({port:1234}, function(err, sim) {
   // Let's show for example all the running apps
-  client.getWebapps(function(err, webapps) {
+  sim.client.getWebapps(function(err, webapps) {
     webapps.listRunningApps(function(err, apps) {
       console.log("Running apps:", apps);
     });
@@ -32,9 +32,9 @@ connect({port:1234}, function(err, client) {
 ```javascript
 var connect = require('fxos-connect');
 start({port:1234})
-  .then(function(client) {
+  .then(function(sim) {
     // Let's show for example all the running apps
-    client.getWebapps(function(err, webapps) {
+    sim.client.getWebapps(function(err, webapps) {
       webapps.listRunningApps(function(err, apps) {
         console.log("Running apps:", apps);
       });
