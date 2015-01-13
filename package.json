@@ -3,8 +3,6 @@
   "version": "1.0.0",
   "description": "Connect to a Firefox simulator (start one if none is open)",
   "main": "index.js",
-  "author": "Nicola Greco <me@nicola.io> (http://nicolagreco.com/)",
-  "license": "ISC",
   "dependencies": {
     "firefox-client": "^0.3.0",
     "fx-ports": "^0.3.0",
@@ -40,6 +38,8 @@
     "fxos",
     "connect"
   ],
+  "author": "Nicola Greco <me@nicola.io> (http://nicolagreco.com/)",
+  "license": "Apache 2.0",
   "bugs": {
     "url": "https://github.com/mozilla/node-firefox-connect/issues"
   },
