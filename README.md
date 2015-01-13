@@ -1,6 +1,8 @@
-# fxos-start
+# node-firefox-connect
 
-Start a FirefoxOS simulator if no simulator is running, and connects to it
+Connects to a Firefox OS Simulator
+
+This is part of the [node-firefox](https://github.com/mozilla/node-firefox) project.
 
 ## Install
 
@@ -41,3 +43,7 @@ start({port:1234})
     });
   });
 ```
+
+##History
+
+This is based on initial work on fxos-connect by Nicola Greco.
