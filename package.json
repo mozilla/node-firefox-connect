@@ -1,11 +1,8 @@
 {
-  "name": "fxos-connect",
-  "version": "0.3.0",
-  "description": "Connect to a simulator (start one if none is open)",
+  "name": "node-firefox-connect",
+  "version": "1.0.0",
+  "description": "Connect to a Firefox simulator (start one if none is open)",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Nicola Greco <me@nicola.io> (http://nicolagreco.com/)",
   "license": "ISC",
   "dependencies": {
@@ -16,6 +13,37 @@
     "underscore": "^1.7.0"
   },
   "devDependencies": {
-    "should": "^4.0.4"
-  }
+    "gulp": "^3.8.10",
+    "gulp-jscs": "^1.3.1",
+    "gulp-jshint": "^1.9.0",
+    "gulp-json-lint": "0.0.1",
+    "gulp-nodeunit": "0.0.5",
+    "gulp-replace": "^0.5.0",
+    "jshint-stylish": "^1.0.0",
+    "should": "^4.0.4",
+    "node-firefox-build-tools": "^0.1.0"
+  },
+  "scripts": {
+    "gulp": "gulp",
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mozilla/node-firefox-connect.git"
+  },
+  "keywords": [
+    "firefox",
+    "developer tools",
+    "b2g",
+    "firefox os",
+    "firefoxos",
+    "fxos",
+    "connect"
+  ],
+  "bugs": {
+    "url": "https://github.com/mozilla/node-firefox-connect/issues"
+  },
+  "homepage": "https://github.com/mozilla/node-firefox-connect"
 }
+
+
