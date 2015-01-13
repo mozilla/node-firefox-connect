@@ -1,3 +1,5 @@
+'use strict';
+
 var FXPorts = require('fx-ports');
 var FXOSStart = require('fxos-start');
 var Q = require('q');
@@ -12,13 +14,13 @@ function findSimulator(opts) {
       release: opts.release,
       detailed: true
     })
-    .then(function (sims) {
+    .then(function(sims) {
       if (sims.length) {
         // if port wanted and found a matching release
         if (opts.port) {
           var ports = sims.map(function(b) { return b.port; });
           var index = ports.indexOf(opts.port);
-          if (index != -1) {
+          if (index !== -1) {
             return sims[index];
           }
         }
@@ -31,20 +33,21 @@ function findSimulator(opts) {
     });
 }
 
-function createClient (simulator) {
+function createClient(simulator) {
   var deferred = Q.defer();
   var client = new FirefoxClient();
-  client.connect(simulator.port, function (err) {
-    if (err) deferred.reject(err);
+  client.connect(simulator.port, function(err) {
+    if (err) {
+      deferred.reject(err);
+    }
     simulator.client = client;
     deferred.resolve(simulator);
   });
   return deferred.promise;
 }
 
-function Connect (opts, callback) {
-
-  if (typeof opts == 'function') {
+function Connect(opts, callback) {
+  if (typeof opts === 'function') {
     callback = opts;
     opts = {connect: true};
   } else {
@@ -63,12 +66,12 @@ function Connect (opts, callback) {
   }
 
   var reuseSimulator = restart ? false : findSimulator(opts);
-  return Q(reuseSimulator)
-    .then(function (sim) {
-      var args = __(__.clone(opts)).extend({connect: false});
-      return sim || FXOSStart(args);
+  return new Q(reuseSimulator)
+    .then(function(sim) {
+      var args = __(__.clone(opts)).extend({ connect: false });
+      return sim || new FXOSStart(args);
     })
-    .then(function (sim) {
+    .then(function(sim) {
       return opts.connect ? createClient(sim) : sim;
     })
     .nodeify(callback);
