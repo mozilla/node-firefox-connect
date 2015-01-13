@@ -49,10 +49,10 @@ function createClient(simulator) {
 function Connect(opts, callback) {
   if (typeof opts === 'function') {
     callback = opts;
-    opts = {connect: true};
   } else {
     opts = opts ? __.clone(opts) : {};
   }
+  opts = { connect: true };
 
   // restart determines if there is a need to restart a simulator
   // which is when we want to use a specific simulator bin/profile

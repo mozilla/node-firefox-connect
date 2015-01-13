@@ -2,7 +2,7 @@
 
 var connect = require('../index');
 
-connect({ port: 1234, connect: true }, function(err, sim) {
+connect({ port: 1234 }, function(err, sim) {
   var client = sim.client;
 
   // Let's show for example all the running apps
