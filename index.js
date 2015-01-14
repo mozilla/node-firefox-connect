@@ -9,11 +9,7 @@ var FirefoxClient = require('firefox-client');
 module.exports = Connect;
 
 function findSimulator(opts) {
-  return Q.nfcall(FXPorts, {
-      b2g: true,
-      release: opts.release,
-      detailed: true
-    })
+  return new FXPorts({ b2g: true, release: opts.release, detailed: true })
     .then(function(sims) {
       if (sims.length) {
         // if port wanted and found a matching release
