@@ -5,8 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "firefox-client": "^0.3.0",
-    "fx-ports": "^0.3.0",
-    "fxos-start": "^0.3.0",
+    "node-firefox-ports": "git+ssh://git@github.com/mozilla/node-firefox-ports.git",
+    "node-firefox-start": "git+ssh://git@github.com/mozilla/node-firefox-start.git",
     "q": "^1.0.1",
     "underscore": "^1.7.0"
   },

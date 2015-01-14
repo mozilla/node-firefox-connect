@@ -1,7 +1,7 @@
 'use strict';
 
-var FXPorts = require('fx-ports');
-var FXOSStart = require('fxos-start');
+var FXPorts = require('node-firefox-ports');
+var FXOSStart = require('node-firefox-start');
 var Q = require('q');
 var __ = require('underscore');
 var FirefoxClient = require('firefox-client');
