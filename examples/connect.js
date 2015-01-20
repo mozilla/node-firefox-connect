@@ -1,9 +1,9 @@
 'use strict';
 
-var connect = require('../index');
+var connect = require('../');
 
-connect({ port: 1234 }, function(err, sim) {
-  var client = sim.client;
+// Connect to a runtime listening to port 8000
+connect(8000).then(function(client) {
 
   // Let's show for example all the running apps
   client.getWebapps(function(err, webapps) {
@@ -11,4 +11,5 @@ connect({ port: 1234 }, function(err, sim) {
       console.log('Running apps:', apps);
     });
   });
+  
 });
