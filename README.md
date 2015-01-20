@@ -1,6 +1,8 @@
-# node-firefox-connect
+# node-firefox-connect [![Build Status](https://secure.travis-ci.org/mozilla/node-firefox-find-ports.png?branch=master)](http://travis-ci.org/mozilla/node-firefox-find-ports)
 
-Connects to a Firefox OS Simulator
+> Connects to a Firefox debuggable runtime.
+
+[![Install with NPM](https://nodei.co/npm/node-firefox-find-ports.png?downloads=true&stars=true)](https://nodei.co/npm/node-firefox-find-ports/)
 
 This is part of the [node-firefox](https://github.com/mozilla/node-firefox) project.
 
@@ -23,34 +25,31 @@ npm install
 ```
 
 ### npm
-This module is not on npm yet.
+
+```bash
+npm install node-firefox-find-ports
+```
 
 ## Usage
 
-Connects to an existing simulator Start a FirefoxOS simulator and connect to it through [firefox-client](https://github.com/harthur/firefox-client) by returning `client`.
-
-### Callback
+Connects to a Firefox runtime, given a port number, and returns a [client](https://github.com/harthur/firefox-client) that can be used to interact with said client.
 
 ```javascript
-var connect = require('./node-firefox-connect');
-connect({ port: 1234 }, function(err, sim) {
-  // Let's show for example all the running apps
-  sim.client.getWebapps(function(err, webapps) {
-    webapps.listRunningApps(function(err, apps) {
-      console.log("Running apps:", apps);
-    });
-  });
-})
+// `connect` returns a Promise
+connect(portNumber).then(function(client) {
+
+});
 ```
 
-### Promise
+## Example
 
 ```javascript
-var connect = require('./node-firefox-connect');
-connect({ port: 1234 })
-  .then(function(sim) {
+var connect = require('node-firefox-connect');
+
+connect(1234)
+  .then(function(client) {
     // Let's show for example all the running apps
-    sim.client.getWebapps(function(err, webapps) {
+    client.getWebapps(function(err, webapps) {
       webapps.listRunningApps(function(err, apps) {
         console.log("Running apps:", apps);
       });
@@ -58,6 +57,6 @@ connect({ port: 1234 })
   });
 ```
 
-##History
+## History
 
 This is based on initial work on fxos-connect by Nicola Greco.
