@@ -1,7 +1,7 @@
 {
   "name": "node-firefox-connect",
   "version": "1.0.0",
-  "description": "Connect to a Firefox simulator (start one if none is open)",
+  "description": "Connect to a Firefox simulator",
   "main": "index.js",
   "dependencies": {
     "es6-promise": "^2.0.1",
@@ -31,6 +31,11 @@
     "connect"
   ],
   "author": "Mozilla (https://mozilla.org/)",
+  "contributors": [
+    "Nicola Greco <me@nicola.io> (http://nicolagreco.com/)",
+    "Brittany Storoz <bstoroz@mozilla.com>",
+    "Soledad Penadés <listas@soledadpenades.com> (http://soledadpenades.com/)"
+  ],
   "license": "Apache 2.0",
   "bugs": {
     "url": "https://github.com/mozilla/node-firefox-connect/issues"
