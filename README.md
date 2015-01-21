@@ -1,8 +1,8 @@
-# node-firefox-connect [![Build Status](https://secure.travis-ci.org/mozilla/node-firefox-find-ports.png?branch=master)](http://travis-ci.org/mozilla/node-firefox-find-ports)
+# node-firefox-connect [![Build Status](https://secure.travis-ci.org/mozilla/node-firefox-connect.png?branch=master)](http://travis-ci.org/mozilla/node-firefox-connect)
 
 > Connects to a Firefox debuggable runtime.
 
-[![Install with NPM](https://nodei.co/npm/node-firefox-find-ports.png?downloads=true&stars=true)](https://nodei.co/npm/node-firefox-find-ports/)
+[![Install with NPM](https://nodei.co/npm/node-firefox-connect.png?downloads=true&stars=true)](https://nodei.co/npm/node-firefox-connect/)
 
 This is part of the [node-firefox](https://github.com/mozilla/node-firefox) project.
 
@@ -27,7 +27,7 @@ npm install
 ### npm
 
 ```bash
-npm install node-firefox-find-ports
+npm install node-firefox-connect
 ```
 
 ## Usage
