@@ -9,6 +9,7 @@
   },
   "devDependencies": {
     "gulp": "^3.8.10",
+    "mockery": "^1.4.0",
     "node-firefox-build-tools": "^0.1.0",
     "node-firefox-start-simulator": "^1.0.0",
     "should": "^4.0.4"
