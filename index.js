@@ -18,6 +18,7 @@ function connect(port) {
       resolve(client);
     });
 
+    client.on('error', reject);
+    client.on('timeout', reject);
   });
 }
- 
